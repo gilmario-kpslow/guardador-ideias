@@ -1,11 +1,11 @@
 AjaxUtil = (function () {
-    this.executa = (function (url, metodo, data, post) {
+    this.executa = (function (url, metodo, dados, executarApos) {
         $.ajax({
             url: url,
             type: metodo,
-            data: data
+            data: dados
         }).success(function (data) {
-            return data;
+            executarApos(data);
         });
     });
 });

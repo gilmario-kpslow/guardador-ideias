@@ -1,14 +1,14 @@
-PaginaUtil = (function () {
-    this.carregarPagina = (function (pagina, conteiner, url) {
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: "pagina=" + pagina
-        }).success(function (data) {
-            $(conteiner).html(new String(data));
+PaginaUtil = (function (url) {
+    var baseUrl = url;
+    var carregador = "pagina";
+    var ajax = new AjaxUtil();
+    this.carregarPagina = (function (pagina, conteiner) {
+        ajax.executa(baseUrl + carregador, "POST", "pagina=" + pagina, function (retorno) {
+            $(conteiner).html(new String(retorno));
         });
     });
 });
+
 
 
 

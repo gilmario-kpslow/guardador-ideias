@@ -1,14 +1,17 @@
-Guardador = (function () {
-    var baseUrl = "/guardador/";
-    var menuUtil = new MenuUtil("menu");
+Guardador = (function (url, menus, index, paginador, menuUtil) {
+    var baseUrl = url;
+    var menus = menus;
+    var index = index;
+    var menuUtil = menuUtil;
+    var paginaUtil = paginador;
 
+
+    /**
+     * Iniciar a aplicação coma acriação dos menus e caregando a pagina inicial
+     * @returns {undefined}
+     */
     this.iniciar = (function () {
-        menuUtil.criarMenu("Inicio", "carregar('ultimas_ideias', '#formulario');");
-        menuUtil.criarMenu("Cadastrar Projeto", "carregar('cadastro_projeto', '#formulario'); carregarScript('projeto/projeto.js');");
+        menuUtil.criarMenus(menus);
+        paginaUtil.carregarPagina(index, "#formulario");
     });
 });
-
-var guardador = new Guardador();
-guardador.iniciar();
-
-
