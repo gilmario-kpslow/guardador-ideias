@@ -1,17 +1,30 @@
-Guardador = (function (url, menus, index, paginador, menuUtil) {
-    var baseUrl = url;
-    var menus = menus;
-    var index = index;
-    var menuUtil = menuUtil;
-    var paginaUtil = paginador;
-
+Guardador = (function () {
+    var baseUrl = "/guardador/";
+    container = "#formulario";
+    var menuUtil = new MenuUtil("#menu");
+    paginador = new PaginaUtil(baseUrl);
+    scriptUtil = new ScriptUtil("#extra_script");
+    var index = 'ultimas_ideias';
 
     /**
      * Iniciar a aplicação coma acriação dos menus e caregando a pagina inicial
      * @returns {undefined}
      */
     this.iniciar = (function () {
+        var menus = [];
+        var menuInicio = new MenuType("inicio", [function () {
+                paginador.carregarPagina('ultimas_ideias', container);
+            }]);
+        menuInicio.adicionaFuncoes();
+        menus[0] = menuInicio;
+        var menuCadastroProjeto = new MenuType("Cadastro de Projetos", [function () {
+                paginador.carregarPagina('cadastro_projeto', container);
+            }, function () {
+                scriptUtil.carregarScript('guardador/controller/ProjetoController');
+            }]);
+        menus[1] = menuCadastroProjeto;
         menuUtil.criarMenus(menus);
-        paginaUtil.carregarPagina(index, "#formulario");
+        paginador.carregarPagina(index, "#formulario");
     });
+
 });

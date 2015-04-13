@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-MenuType = (function (nome) {
+MenuType = (function (nome, funcoes) {
     var nome = nome;
-    var funcoes = [];
+    var funcoes = funcoes;
 
     this.adicionaFuncoes = (function (funcao) {
-
         funcoes[funcoes.length] = funcao;
     });
 
