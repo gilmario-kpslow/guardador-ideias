@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
  *
  * @author gilmario
  */
-public class DAORepositorio extends DAO implements Serializable {
+public class DAORepositorio<T, PK extends Serializable> extends DAO implements Serializable {
 
     private final Class entidade;
 
@@ -20,5 +20,13 @@ public class DAORepositorio extends DAO implements Serializable {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         builder.createQuery(entidade);
         return getEntityManager().createQuery(builder.createQuery()).getResultList();
+    }
+
+    public T referencia(PK pk) {
+        return (T) getEntityManager().getReference(entidade, pk);
+    }
+
+    public T encontra(PK pk) {
+        return (T) getEntityManager().find(entidade, pk);
     }
 }

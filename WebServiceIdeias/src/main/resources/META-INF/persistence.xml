@@ -4,7 +4,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:/jboss/datasources/PostgreSQLDS</jta-data-source>
         <class>br.com.gilmariosoftware.webserviceideias.modelo.Ideia</class>
-        <class>br.com.gilmariosoftware.webserviceideias.modelo.Realizacao</class>
+        <class>br.com.gilmariosoftware.webserviceideias.modelo.Projeto</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

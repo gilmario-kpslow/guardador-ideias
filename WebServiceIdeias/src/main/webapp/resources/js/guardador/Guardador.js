@@ -20,6 +20,8 @@ Guardador = (function () {
         var menuCadastroProjeto = new MenuType("Cadastro de Projetos", [function () {
                 paginador.carregarPagina('cadastro_projeto', container);
             }, function () {
+                scriptUtil.carregarScript('guardador/modelo/Projeto');
+            }, function () {
                 scriptUtil.carregarScript('guardador/controller/ProjetoController');
             }]);
         menus[1] = menuCadastroProjeto;

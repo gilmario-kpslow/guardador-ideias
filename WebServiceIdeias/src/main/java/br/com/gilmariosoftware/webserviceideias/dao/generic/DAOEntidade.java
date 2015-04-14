@@ -6,6 +6,7 @@
 package br.com.gilmariosoftware.webserviceideias.dao.generic;
 
 import java.io.Serializable;
+import javax.ejb.Stateless;
 
 /**
  *
@@ -13,12 +14,11 @@ import java.io.Serializable;
  * @param <T>
  * @param <PK>
  */
-public abstract class DAOEntidade<T, PK extends Serializable> extends DAO implements Serializable {
+@Stateless
+public class DAOEntidade<T> extends DAO implements Serializable {
 
-    private final Class<T> classeEntidade;
+    public DAOEntidade() {
 
-    public DAOEntidade(Class<T> classe) {
-        this.classeEntidade = classe;
     }
 
     public void persist(T t) {
@@ -27,14 +27,6 @@ public abstract class DAOEntidade<T, PK extends Serializable> extends DAO implem
 
     public T merge(T t) {
         return (T) getEntityManager().merge(t);
-    }
-
-    public T referencia(PK pk) {
-        return (T) getEntityManager().getReference(classeEntidade, pk);
-    }
-
-    public T encontra(PK pk) {
-        return (T) getEntityManager().find(classeEntidade, pk);
     }
 
 }

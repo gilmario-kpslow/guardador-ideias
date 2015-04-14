@@ -5,7 +5,7 @@
  */
 package br.com.gilmariosoftware.webserviceideias.servlet;
 
-import br.com.gilmariosoftware.webserviceideias.dao.IdeiaDAO;
+import br.com.gilmariosoftware.webserviceideias.dao.generic.DAOEntidade;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IdeiaServlet extends HttpServlet {
 
     @EJB
-    private IdeiaDAO dao;
+    private DAOEntidade dao;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
