@@ -1,40 +1,44 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <div class="panel-title">Cadastro de Projetos</div>
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="panel-title">Cadastro de Projetos</span>
+        </div>
+        <div class="panel-body">
+            <form method="POST">
+                <div class="col-lg-12">
+                    <div class="col-lg-6 col-md-8">
+                        <input type="text" class="form-control" placeholder="Nome do Projeto" id="nome"/>
+                    </div>
+                    <input type="hidden" id="status" value="Aguardando"/>
+                    <input type="hidden" id="id"/>
+                    <div class="col-lg-2 col-md-2">
+                        <button class="btn btn-default" type="button" onclick="controller.salvar();">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="panel-body">
-        <form>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="panel-title">Projeto Cadastrados</div>
+        </div>
+        <div class="panel-body">
             <div class="col-lg-12">
-                <div class="col-lg-6 col-md-8">
-                    <input type="text" class="form-control" placeholder="Nome do Projeto" id="nome"/>
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <button class="btn form-control btn-default" onclick="controller.salvar();">Salvar</button>
-                </div>
+                <table class="table table-condensed table-hover table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Projeto
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_projetos">
+                    </tbody>
+                </table>
             </div>
-        </form>
-    </div>
-</div>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <div class="panel-title">Projeto Cadastrados</div>
-    </div>
-    <div class="panel-body">
-        <div class="col-lg-12">
-            <table class="table table-condensed table-hover table-responsive table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            Id
-                        </th>
-                        <th>
-                            Projeto
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="table_projetos">
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

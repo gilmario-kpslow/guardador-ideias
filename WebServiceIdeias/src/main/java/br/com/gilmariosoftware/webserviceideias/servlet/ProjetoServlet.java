@@ -11,6 +11,7 @@ import br.com.gilmariosoftware.webserviceideias.modelo.Projeto;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,12 +31,14 @@ public class ProjetoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/json");
+        resp.setCharacterEncoding("UTF-8");
         Gson g = new Gson();
         Projeto p = g.fromJson(req.getParameter("projeto"), Projeto.class);
-        System.out.println(req.getParameter("projeto"));
         dao.merge(p);
         try (PrintWriter w = resp.getWriter()) {
-            w.print(g.toJson(new Informacao("Registro salvo com suecesso")));
+            w.print(g.toJson(new Informacao("Registro salvo com sucesso")));
+            System.out.println(g.toJson(new Informacao("Registro salvo com sucesso")));
         }
     }
 

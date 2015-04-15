@@ -3,7 +3,8 @@ AjaxUtil = (function () {
         $.ajax({
             url: url,
             type: metodo,
-            data: dados
+            data: dados,
+            async: true
         }).success(function (data) {
             executarApos(data);
         });

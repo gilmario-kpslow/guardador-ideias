@@ -2,5 +2,8 @@
  * Iniciar a aplicação
  * @type Guardador
  */
-app = new Guardador();
-app.iniciar();
+
+$(function () {
+    guardador = new Guardador();
+    guardador.iniciar();
+});

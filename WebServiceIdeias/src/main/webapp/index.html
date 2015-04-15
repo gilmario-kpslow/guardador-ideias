@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -6,21 +5,21 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="resources/css/bootstrap.css"/>
-        <link rel="stylesheet" href="resources/css/bootstrap-theme.css"/>
         <link rel="stylesheet" href="resources/css/base.css"/>
+        <link rel="stylesheet" href="resources/css/mensagens.css"/>
     </head>
     <body>
         <div class="master">
             <div class="navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
-                        <button class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" type="button">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse" type="button">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div id="navbar" class="collapse navbar-collapse">
+                    <div id="navbar" class="navbar-collapse collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav" id="menu">
                         </ul>
                     </div>
@@ -28,7 +27,9 @@
             </div>
             <div class="container main">
                 <div id="conteudo">
+
                     <div id="formulario">
+
                     </div>
                 </div>
             </div>
@@ -37,11 +38,15 @@
             </footer>
             <script type="text/javascript" src="resources/js/jquery.min.js"></script>
             <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="resources/js/guardador/modelo/Informacao.js"></script>
+            <script type="text/javascript" src="resources/js/guardador/modelo/MenuType.js"></script>
+            <script type="text/javascript" src="resources/js/guardador/modelo/Projeto.js"></script>
             <script type="text/javascript" src="resources/js/guardador/util/AjaxUtil.js"></script>
             <script type="text/javascript" src="resources/js/guardador/util/MenuUtil.js"></script>
             <script type="text/javascript" src="resources/js/guardador/util/PaginaUtil.js"></script>
             <script type="text/javascript" src="resources/js/guardador/util/ScriptUtil.js"></script>
-            <script type="text/javascript" src="resources/js/guardador/modelo/MenuType.js"></script>
+            <script type="text/javascript" src="resources/js/guardador/util/MensagemUtil.js"></script>
+            <script type="text/javascript" src="resources/js/guardador/controller/ProjetoController.js"></script>
             <script type="text/javascript" src="resources/js/guardador/Guardador.js"></script>
             <script type="text/javascript" src="resources/js/app.js"></script>
             <div id="extra_script"></div>
