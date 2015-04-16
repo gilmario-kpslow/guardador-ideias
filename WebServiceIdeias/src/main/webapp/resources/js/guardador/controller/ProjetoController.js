@@ -7,11 +7,13 @@ ProjetoController = (function (men) {
      * @type Arguments
      */
     this.salvar = (function () {
-        var projeto = this.getProjeto();
-        console.log(JSON.stringify(projeto));
-        ajax.executa("/guardador/projeto/criar", "POST", "projeto=" + JSON.stringify(projeto), function (dados) {
-            men.mostrarMensagem(new Informacao(dados.titulo, dados.descricao, dados.tipo));
-        });
+        if (this.validar()) {
+            var projeto = this.getProjeto();
+            console.log(JSON.stringify(projeto));
+            ajax.executa("/guardador/projeto/criar", "POST", "projeto=" + JSON.stringify(projeto), function (dados) {
+                men.mostrarMensagem(new Informacao(dados.titulo, dados.descricao, dados.tipo));
+            });
+        }
     });
 
     this.limpar = (function () {
@@ -27,4 +29,17 @@ ProjetoController = (function (men) {
         projeto.setStatus($("#status").val());
         return projeto;
     });
+
+    this.validar = (function () {
+        for (var campo in campos) {
+            if (campos[campo] == 'input') {
+                mensagemUtil.mostrarMensagem(new Informacao('Campo vazio', 'informe o nome do projeto', 'ATENCAO'));
+                $(campo).focus();
+                return false;
+            }
+        }
+        return true;
+    });
+
+
 });

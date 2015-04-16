@@ -23,17 +23,18 @@ Guardador = (function () {
                 guardador.iniciaCadastroProjeto();
             }]);
         menus[1] = menuCadastroProjeto;
-        menus[2] = new MenuType("testeMensagem", [function () {
-                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'INFORMACAO'));
-                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'ERRO'));
-                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'SUCESSO'));
-                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf dfg dfg dfgd fgdf gdf gdfg dfg dfgd fgdfg ', 'ATENCAO'));
+        menus[2] = new MenuType("Cadastro de Ideia", [function () {
+                guardador.iniciaCadastroProjeto();
             }]);
         menuUtil.criarMenus(menus);
         paginador.carregarPagina(index, "#formulario");
     });
 
     this.iniciaCadastroProjeto = (function () {
+        controller = new ProjetoController(mensagemUtil);
+        paginador.carregarPagina('cadastro_projeto', container);
+    });
+    this.iniciaCadastroIdeia = (function () {
         controller = new ProjetoController(mensagemUtil);
         paginador.carregarPagina('cadastro_projeto', container);
     });
