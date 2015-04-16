@@ -12,7 +12,6 @@ import javax.ejb.Stateless;
  *
  * @author gilmario
  * @param <T>
- * @param <PK>
  */
 @Stateless
 public class DAOEntidade<T> extends DAO implements Serializable {

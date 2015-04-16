@@ -8,15 +8,25 @@ and open the template in the editor.
     Author     : gilmario
 */
 #mensagens{
+    width: 250px;
+    min-height: 25px;
     position: absolute;
     float: right;
-    border: 1px solid red;
-    background: #2aabd2;
     top: 0px;
     right: 0px;
     margin: 12px;
 }
 
 #mensagens .mensagem{
-    background: blue;
+    height: 100%;
+    color: black;
+    margin: 5px;
+    padding: 5px;
+}
+#mensagens .mensagem .titulo{
+    font-weight: bold;
+    padding: 5px;
+}
+#mensagens .mensagem .descricao{
+    padding: 5px;
 }

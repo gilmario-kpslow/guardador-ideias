@@ -24,7 +24,10 @@ Guardador = (function () {
             }]);
         menus[1] = menuCadastroProjeto;
         menus[2] = new MenuType("testeMensagem", [function () {
-                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'sdfsdf'));
+                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'INFORMACAO'));
+                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'ERRO'));
+                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf', 'SUCESSO'));
+                mensagemUtil.mostrarMensagem(new Informacao('teste', 'sdfksdhjf dfg dfg dfgd fgdf gdf gdfg dfg dfgd fgdfg ', 'ATENCAO'));
             }]);
         menuUtil.criarMenus(menus);
         paginador.carregarPagina(index, "#formulario");

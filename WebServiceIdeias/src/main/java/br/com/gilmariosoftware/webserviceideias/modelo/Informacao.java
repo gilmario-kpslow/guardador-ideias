@@ -62,6 +62,6 @@ public class Informacao {
 
     protected enum TipoMensagem {
 
-        INFORMACAO, SUCESSO, ATANCAO, ERRO, FATAL
+        INFORMACAO, SUCESSO, ATENCAO, ERRO, FATAL
     }
 }
