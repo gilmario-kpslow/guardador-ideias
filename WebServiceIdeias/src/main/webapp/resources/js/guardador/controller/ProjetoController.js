@@ -2,6 +2,7 @@ ProjetoController = (function (men) {
     var ajax = new AjaxUtil();
     var campos = {'#nome': 'input', '#id': 'hidden', '#status': 'hidden'};
     var men = men;
+
     /**
      *
      * @type Arguments
@@ -32,14 +33,24 @@ ProjetoController = (function (men) {
 
     this.validar = (function () {
         for (var campo in campos) {
-            if (campos[campo] == 'input') {
-                mensagemUtil.mostrarMensagem(new Informacao('Campo vazio', 'informe o nome do projeto', 'ATENCAO'));
+            if (campos[campo] === 'input') {
+                men.mostrarMensagem(new Informacao('Campo vazio', 'informe o nome do projeto', 'ATENCAO'));
                 $(campo).focus();
                 return false;
             }
         }
         return true;
     });
+    this.executarConsulta = (function () {
+        paginador = new PaginadorMagico("paginador", ['id', 'nome'], "#tabela_projetos",
+                function (i) {
+                    return this.consultar(i);
+                }, this.contar());
+        paginador.iniciar();
+    });
 
+    this.contar = (function () {
+
+    });
 
 });

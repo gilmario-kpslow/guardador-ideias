@@ -2,12 +2,14 @@ package br.com.gilmariosoftware.webserviceideias.dao.generic;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
  * @author gilmario
  */
+@Stateless
 public class DAORepositorio<T, PK extends Serializable> extends DAO implements Serializable {
 
     private final Class entidade;

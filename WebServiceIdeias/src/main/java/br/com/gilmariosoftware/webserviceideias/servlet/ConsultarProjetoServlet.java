@@ -11,7 +11,6 @@ import br.com.gilmariosoftware.webserviceideias.modelo.Projeto;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gilmario
  */
-@WebServlet(urlPatterns = "/projeto/criar")
-public class ProjetoServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/projeto/consultar")
+public class ConsultarProjetoServlet extends HttpServlet {
 
     @EJB
     private DAOEntidade<Projeto> dao;

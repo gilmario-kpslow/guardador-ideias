@@ -32,7 +32,7 @@ PaginadorMagico = (function (tagPaginador, colunas, idTabela, consultar, numeroP
         for (var i = 0; i < linhas.length; i++) {
             conteudo += "<tr>";
             for (var j = 0; j < linhas[i].length; j++) {
-                conteudo += "<td>" + linhas[i][j] + "</td>";
+                conteudo += linhas[i][j];
             }
             conteudo += "</tr>";
         }
