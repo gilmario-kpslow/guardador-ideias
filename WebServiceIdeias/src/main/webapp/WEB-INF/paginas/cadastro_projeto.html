@@ -12,7 +12,7 @@
                     <input type="hidden" id="status" value="Aguardando"/>
                     <input type="hidden" id="id"/>
                     <div class="col-lg-2 col-md-2">
-                        <button class="btn btn-default form-control" type="button" onclick="controller.salvar();">Salvar</button>
+                        <button class="btn btn-default form-control" type="button" id="btn">Salvar</button>
                     </div>
                 </div>
             </form>
@@ -20,23 +20,24 @@
     </div>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div class="panel-title">Projeto Cadastrados</div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <span class="panel-title">
+                        Projeto Cadastrados
+                    </span>
+                </div>
+                <div class="col-lg-6 text-right">
+                    <button type="button" class="btn btn-default" id="consultar"><span class="glyphicon glyphicon-search"></span> Consultar</button>
+                </div>
+            </div>
+
         </div>
         <div class="panel-body">
+            <ul class="pagination" id="paginador"></ul>
             <div class="col-lg-12">
-                <table class="table table-condensed table-hover table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th>
-                                Id
-                            </th>
-                            <th>
-                                Projeto
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="table_projetos">
-                    </tbody>
+                <table class="table table-condensed table-hover table-responsive table-striped" id="tabela_projetos">
+
                 </table>
             </div>
         </div>

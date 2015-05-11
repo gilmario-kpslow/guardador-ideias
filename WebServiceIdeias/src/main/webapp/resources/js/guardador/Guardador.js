@@ -1,12 +1,10 @@
 Guardador = (function () {
-    var baseUrl = "/guardador/";
-    container = "#formulario";
+    var baseUrl = "/guardador";
+    var container = "#formulario";
     var menuUtil = new MenuUtil("#menu");
-    paginador = new PaginaUtil(baseUrl);
-    scriptUtil = new ScriptUtil("#extra_script");
+    var carregaPaginas = new PaginaUtil(baseUrl);
     var index = 'ultimas_ideias';
-    controller = "";
-    mensagemUtil = new MensagemUtil();
+    var mensagemUtil = new MensagemUtil();
 
     /**
      * Iniciar a aplicação coma acriação dos menus e caregando a pagina inicial
@@ -15,28 +13,25 @@ Guardador = (function () {
     this.iniciar = (function () {
         var menus = [];
         var menuInicio = new MenuType("inicio", [function () {
-                paginador.carregarPagina('ultimas_ideias', container);
+                carregaPaginas.carregarPagina('inicio', container);
             }]);
-//        menuInicio.adicionaFuncoes();
         menus[0] = menuInicio;
         var menuCadastroProjeto = new MenuType("Cadastro de Projetos", [function () {
-                guardador.iniciaCadastroProjeto();
+                var view = new ProjetoView(mensagemUtil);
+                carregaPaginas.carregarPagina('cadastro_projeto', container, function () {
+                    view.inicializa();
+                });
             }]);
         menus[1] = menuCadastroProjeto;
         menus[2] = new MenuType("Cadastro de Ideia", [function () {
-                guardador.iniciaCadastroProjeto();
+                alert('ok');
             }]);
         menuUtil.criarMenus(menus);
-        paginador.carregarPagina(index, "#formulario");
+        carregaPaginas.carregarPagina(index, "#formulario");
     });
 
-    this.iniciaCadastroProjeto = (function () {
-        controller = new ProjetoController(mensagemUtil);
-        paginador.carregarPagina('cadastro_projeto', container);
-    });
     this.iniciaCadastroIdeia = (function () {
-        controller = new ProjetoController(mensagemUtil);
-        paginador.carregarPagina('cadastro_projeto', container);
+        carregaPaginas.carregarPagina('cadastro_ideia', container);
     });
 
 });

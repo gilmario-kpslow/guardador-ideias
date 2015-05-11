@@ -5,12 +5,8 @@
  */
 package br.com.gilmariosoftware.webserviceideias.servlet;
 
-import br.com.gilmariosoftware.webserviceideias.dao.generic.DAORepositorio;
-import br.com.gilmariosoftware.webserviceideias.modelo.Ideia;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

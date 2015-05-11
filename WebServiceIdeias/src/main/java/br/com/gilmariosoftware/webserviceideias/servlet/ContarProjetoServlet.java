@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gilmario
  */
-@WebServlet(urlPatterns = "/projeto/consultar")
-public class ConsultarProjetoServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/projeto/contar")
+public class ContarProjetoServlet extends HttpServlet {
 
     @EJB
     private ProjetoRepositorio pr;
@@ -30,9 +30,9 @@ public class ConsultarProjetoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         resp.setCharacterEncoding("UTF-8");
-        Gson g = new Gson();
+        int resultado = (pr.contar() / 10) + 1;
         try (ServletOutputStream w = resp.getOutputStream()) {
-            w.println(g.toJson(pr.encontrarTodas()));
+            w.println("{\"resultado\":\"" + resultado + "\"}");
         }
     }
 
@@ -40,9 +40,9 @@ public class ConsultarProjetoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/json");
         resp.setCharacterEncoding("UTF-8");
-        Gson g = new Gson();
+        int resultado = (pr.contar() / 10) + 1;
         try (ServletOutputStream w = resp.getOutputStream()) {
-            w.println(g.toJson(pr.encontrarTodas()));
+            w.println("{'resultado':'" + resultado + "}'");
         }
     }
 

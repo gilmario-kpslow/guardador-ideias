@@ -11,13 +11,8 @@ MenuType = (function (nome, funcoes) {
         funcoes[funcoes.length] = funcao;
     });
 
-    this.funcoesToString = (function () {
-        var nFuncoes = "";
-        for (var f in funcoes) {
-            var ffs = new String(funcoes[f]);
-            nFuncoes += ffs.replace("function () {", "").replace("}", "");
-        }
-        return nFuncoes;
+    this.getFuncoes = (function () {
+        return funcoes;
     });
 
     this.getNome = (function () {

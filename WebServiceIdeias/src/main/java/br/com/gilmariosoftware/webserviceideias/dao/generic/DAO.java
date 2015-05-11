@@ -8,6 +8,7 @@ package br.com.gilmariosoftware.webserviceideias.dao.generic;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.hibernate.Session;
 
 /**
  *
@@ -21,6 +22,10 @@ public abstract class DAO implements Serializable {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public Session getSession() {
+        return entityManager.unwrap(Session.class);
     }
 
 }

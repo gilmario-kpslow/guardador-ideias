@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <c:interface>
+
+    </c:interface>
+    <c:implementation>
+        <h:form>
+            <cc:padrao header="Consulta de Idéias">
+                <p:fieldset>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="input-group ">
+                                <p:inputText value="#{ideiaConsultaMB.projeto.nome}" readonly="true" styleClass="form-control projeto_sel" maxlength="50" placeholder="Nome do projeto"/>
+                                <span class="input-group-addon cursor" onclick="PF('dialog_consulta').show();"> <i class="fa fa-search"> </i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <p:inputText value="#{ideiaConsultaMB.nome}" styleClass="form-control" maxlength="50" placeholder="Titulo da idéia"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <p:commandButton class="btn btn-default"  value="Consultar" icon="ui-icon-search" actionListener="#{ideiaConsultaMB.consultar()}" update="@form"/>
+                        </div>
+                    </div>
+                </p:fieldset>
+                <p:fieldset>
+                    <p:dataTable value="#{ideiaConsultaMB.listaDeIdeias}" var="i" paginatorAlwaysVisible="false" paginator="true" rows="10">
+                        <p:column headerText="Projeto">
+                            <h:outputText value="#{i.projeto.nome}"/>
+                        </p:column>
+                        <p:column headerText="Título">
+                            <h:outputText value="#{i.titulo}"/>
+                        </p:column>
+                        <p:column headerText="Data cadastro">
+                            <h:outputText value="#{i.dataCadastro.time}">
+                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Status">
+                            <h:outputText value="#{i.status}"/>
+                        </p:column>
+                        <c:insertChildren />
+                    </p:dataTable>
+                </p:fieldset>
+            </cc:padrao>
+        </h:form>
+        <cc:dialog widgetVar="dialog_consulta">
+            <co:projeto>
+                <p:column headerText="ação">
+                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('dialog_consulta').hide();">
+                        <f:setPropertyActionListener value="#{p}" target="#{ideiaConsultaMB.projeto}"/>
+                    </p:commandButton>
+                </p:column>
+            </co:projeto>
+        </cc:dialog>
+    </c:implementation>
+</ui:composition>

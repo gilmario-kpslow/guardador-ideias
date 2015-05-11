@@ -24,10 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gilmario
  */
-@WebServlet(urlPatterns = "/pagina", asyncSupported = true)
+@WebServlet(urlPatterns = "/pagina/*", asyncSupported = true)
 public class PaginaServlet extends HttpServlet {
-
-    private static final String PAGINA = "pagina";
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +34,8 @@ public class PaginaServlet extends HttpServlet {
         context.start(() -> {
             PrintWriter w = null;
             try {
-                String pagina = context.getRequest().getParameter(PAGINA);
+                //String pagina = req.getRequestURI().replace(req.getContextPath() + "/pagina/", "");
+                String pagina = ((HttpServletRequest) context.getRequest()).getRequestURI().replace(req.getContextPath() + "/pagina/", "");
                 String real = ((ServletRequest) req).getServletContext().getRealPath("WEB-INF");
                 File f = new File(real + "/paginas/" + pagina + ".html");
                 FileReader reader = new FileReader(f);
@@ -59,16 +58,11 @@ public class PaginaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //final AsyncContext context = req.getAsyncContext();
-        String real = ((ServletRequest) req).getServletContext().getRealPath("WEB-INF");
-        File f = new File(real + "/paginas/" + "inicio" + ".html");
-        FileReader reader = new FileReader(f);
-        BufferedReader br = new BufferedReader(reader);
+
         PrintWriter w = resp.getWriter();
-        //w.print(real);
-        while (br.ready()) {
-            w.print(br.readLine());
-        }
+
+        w.print(req.getRequestURI().replace(req.getContextPath() + "/pagina/", ""));
+
         w.close();
         //req.getRequestDispatcher("WEB-INF/paginas/" + "inicio" + ".html").forward(req, resp);
     }

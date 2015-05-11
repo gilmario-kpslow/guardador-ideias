@@ -2,15 +2,15 @@ package br.com.gilmariosoftware.webserviceideias.dao.generic;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.persistence.criteria.CriteriaBuilder;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author gilmario
+ * @param <T>
+ * @param <PK>
  */
-@Stateless
-public class DAORepositorio<T, PK extends Serializable> extends DAO implements Serializable {
+public abstract class DAORepositorio<T, PK extends Serializable> extends DAO implements Serializable {
 
     private final Class entidade;
 
@@ -19,16 +19,23 @@ public class DAORepositorio<T, PK extends Serializable> extends DAO implements S
     }
 
     public List encontrarTodas() {
-        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        builder.createQuery(entidade);
-        return getEntityManager().createQuery(builder.createQuery()).getResultList();
+        return getSession().createCriteria(entidade).list();
+    }
+
+    public List encontrarTodas(String campo, String nome) {
+        return getSession().createCriteria(entidade).add(Restrictions.ilike(campo, nome.concat("%"))).list();
     }
 
     public T referencia(PK pk) {
-        return (T) getEntityManager().getReference(entidade, pk);
+        return (T) getSession().load(entidade, pk);
     }
 
     public T encontra(PK pk) {
-        return (T) getEntityManager().find(entidade, pk);
+        return (T) getSession().get(entidade, pk);
     }
+
+    public Class getEntidade() {
+        return entidade;
+    }
+
 }

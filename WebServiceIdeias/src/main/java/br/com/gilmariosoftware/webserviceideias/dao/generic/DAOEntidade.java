@@ -21,11 +21,13 @@ public class DAOEntidade<T> extends DAO implements Serializable {
     }
 
     public void persist(T t) {
-        getEntityManager().persist(t);
+        //getEntityManager().persist(t);
+        getSession().saveOrUpdate(t);
     }
 
     public T merge(T t) {
-        return (T) getEntityManager().merge(t);
+        //getEntityManager().merge(t);
+        return (T) getSession().merge(t);
     }
 
 }

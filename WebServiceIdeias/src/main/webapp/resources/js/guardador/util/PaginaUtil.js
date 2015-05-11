@@ -2,11 +2,15 @@ PaginaUtil = (function (url) {
     var baseUrl = url;
     var carregador = "pagina";
     var ajax = new AjaxUtil();
-    this.carregarPagina = (function (pagina, conteiner) {
-        ajax.executa(baseUrl + carregador, "POST", "pagina=" + pagina,
+    this.carregarPagina = (function (pagina, conteiner, pos) {
+        ajax.executa(baseUrl + "/" + carregador + "/" + pagina, "POST", "",
                 function (retorno) {
-                    $(conteiner).html(new String(retorno));
+                    $(conteiner).html(retorno);
+                    if (pos != undefined) {
+                        pos();
+                    }
                 });
+
     });
 });
 

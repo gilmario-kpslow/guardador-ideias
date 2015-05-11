@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite"
+                xmlns:ca="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <c:interface>
+
+    </c:interface>
+    <c:implementation>
+        <h:form>
+            <ca:padrao header="Cadastro de Idéias">
+                <p:fieldset>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p:toolbar>
+                                <f:facet name="left">
+                                    <p:commandButton value="Salvar" actionListener="#{ideiaMB.salvar()}" icon="ui-icon-disk" class="btn btn-default" update="@form"/>
+                                </f:facet>
+                            </p:toolbar>
+                        </div>
+                    </div>
+                </p:fieldset>
+                <p:fieldset>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div>
+                                <p:outputLabel value="Projeto" for="projeto"/>
+                            </div>
+                            <div class="input-group ">
+                                <p:inputText value="#{ideiaMB.ideia.projeto.nome}" readonly="true" disabled="true" id="projeto" placeholder="Selecione um projeto" class="form-control projeto_sel"/>
+                                <span class="input-group-addon cursor" onclick="PF('dialog_consulta').show();"> <i class="fa fa-search"> </i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <p:outputLabel value="Título" for="titulo"/>
+                            </div>
+                            <p:inputText value="#{ideiaMB.ideia.titulo}" id="titulo" placeholder="Titulo da Idéia" class="form-control"/>
+                        </div>
+                        <div class="col-lg-2">
+                            <div>
+                                <p:outputLabel value="Situação"/>
+                            </div>
+                            <p:inputText value="#{ideiaMB.ideia.status}" readonly="true" placeholder="Status da idéia" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div>
+                                <p:outputLabel value="Descrição" for="descricao"/>
+                            </div>
+                            <p:inputTextarea value="#{ideiaMB.ideia.descricao}" id="descricao" class="form-control"/>
+                        </div>
+                    </div>
+                </p:fieldset>
+            </ca:padrao>
+        </h:form>
+        <ca:dialog widgetVar="dialog_consulta">
+            <co:projeto>
+                <p:column headerText="ação">
+                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('dialog_consulta').hide();">
+                        <f:setPropertyActionListener value="#{p}" target="#{ideiaMB.ideia.projeto}"/>
+                    </p:commandButton>
+                </p:column>
+            </co:projeto>
+        </ca:dialog>
+    </c:implementation>
+</ui:composition>

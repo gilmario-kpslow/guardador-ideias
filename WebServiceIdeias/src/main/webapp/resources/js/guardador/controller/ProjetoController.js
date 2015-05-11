@@ -2,31 +2,29 @@ ProjetoController = (function (men) {
     var ajax = new AjaxUtil();
     var campos = {'#nome': 'input', '#id': 'hidden', '#status': 'hidden'};
     var men = men;
+    var formUtil = new FormularioUtil();
 
-    /**
-     *
-     * @type Arguments
-     */
+    this.consultar = (function () {
+
+    });
+
+
     this.salvar = (function () {
         if (this.validar()) {
             var projeto = this.getProjeto();
-            console.log(JSON.stringify(projeto));
             ajax.executa("/guardador/projeto/criar", "POST", "projeto=" + JSON.stringify(projeto), function (dados) {
                 men.mostrarMensagem(new Informacao(dados.titulo, dados.descricao, dados.tipo));
+                formUtil.limparFormulario(campos);
             });
-        }
-    });
-
-    this.limpar = (function () {
-        for (var campo in campos) {
-            $(campo).val('');
         }
     });
 
     this.getProjeto = (function () {
         var projeto = new Projeto();
         projeto.setNome($("#nome").val());
-        //projeto.setId($("#id").val());
+        if ($("#id").val() != '') {
+            projeto.setId($("#id").val());
+        }
         projeto.setStatus($("#status").val());
         return projeto;
     });
@@ -34,23 +32,23 @@ ProjetoController = (function (men) {
     this.validar = (function () {
         for (var campo in campos) {
             if (campos[campo] === 'input') {
-                men.mostrarMensagem(new Informacao('Campo vazio', 'informe o nome do projeto', 'ATENCAO'));
-                $(campo).focus();
-                return false;
+                if ($(campo).val() == '') {
+                    men.mostrarMensagem(new Informacao('Campo vazio', 'informe o nome do projeto', 'ATENCAO'));
+                    $(campo).focus();
+                    return false;
+                }
             }
         }
         return true;
     });
-    this.executarConsulta = (function () {
-        paginador = new PaginadorMagico("paginador", ['id', 'nome'], "#tabela_projetos",
-                function (i) {
-                    return this.consultar(i);
-                }, this.contar());
-        paginador.iniciar();
+
+    this.geraLinha = (function (projeto) {
+        return "<tr><td>" + projeto.id + "</td><td>" + projeto.nome + "</td></tr>";
     });
 
-    this.contar = (function () {
-
+    this.executarConsulta = (function (paginador) {
+        ajax.executa("/guardador/projeto/contar", 'POST', "parametrosContador", function (i) {
+            paginador.iniciar(i.resultado);
+        });
     });
-
 });
