@@ -7,13 +7,13 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 
 /**
  *
  * @author gilmario
  */
-@Stateless
+@Stateful
 public class IdeiaNegocio implements Serializable {
 
     @EJB

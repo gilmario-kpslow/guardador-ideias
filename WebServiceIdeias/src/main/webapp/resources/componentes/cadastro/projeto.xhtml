@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsf/composite"
-                xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:ca="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
@@ -12,13 +13,14 @@
     </c:interface>
     <c:implementation>
         <h:form>
-            <cc:padrao header="Cadastro de Projeto">
+            <ca:padrao header="Cadastro de Projeto">
                 <p:fieldset>
                     <div class="row">
                         <div class="col-lg-12">
                             <p:toolbar>
                                 <f:facet name="left">
                                     <p:commandButton value="Salvar" actionListener="#{projetoMB.salvar()}" icon="fa fa-save" class="btn btn-default" update="@form"/>
+                                    <p:commandButton value="Consultar" immediate="true" icon="fa fa-search" class="btn btn-default" onclick="PF('cadastro_projeto_dialog_consulta').show()"/>
                                 </f:facet>
                             </p:toolbar>
                         </div>
@@ -40,7 +42,16 @@
                         </div>
                     </div>
                 </p:fieldset>
-            </cc:padrao>
+            </ca:padrao>
         </h:form>
+        <ca:dialog widgetVar="cadastro_projeto_dialog_consulta" header="Consulta de Projetos">
+            <co:projeto>
+                <p:column headerText="ação">
+                    <p:commandButton update="@(.view)" icon="fa fa-check-circle" immediate="true" onclick="PF('cadastro_projeto_dialog_consulta').hide();">
+                        <f:setPropertyActionListener value="#{p}" target="#{projetoMB.projeto}"/>
+                    </p:commandButton>
+                </p:column>
+            </co:projeto>
+        </ca:dialog>
     </c:implementation>
 </ui:composition>

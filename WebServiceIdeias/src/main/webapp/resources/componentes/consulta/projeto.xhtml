@@ -5,27 +5,28 @@
                 xmlns:c="http://xmlns.jcp.org/jsf/composite"
                 xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
                 xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
+                xmlns:v="http://xmlns.jcp.org/jsf/composite/componentes/view"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <c:interface>
-
+        <c:attribute name="renderView" default="true"/>
     </c:interface>
     <c:implementation>
         <h:form>
             <cc:padrao header="Consulta de Projetos">
                 <p:fieldset>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <p:inputText value="#{projetoConsultaMB.nome}" styleClass="form-control" maxlength="50" placeholder="Nome do projeto"/>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3">
                             <p:commandButton class="btn btn-default"  value="Consultar" icon="ui-icon-search" actionListener="#{projetoConsultaMB.consultar()}" update="@form"/>
                         </div>
                     </div>
                 </p:fieldset>
                 <p:fieldset>
-                    <p:dataTable value="#{projetoConsultaMB.listaDeProjetos}" var="p" paginatorAlwaysVisible="false" paginator="true" rows="10">
+                    <p:dataTable value="#{projetoConsultaMB.listaDeProjetos}" var="p" paginatorAlwaysVisible="false" paginator="true" rows="10" reflow="true">
                         <p:column headerText="Id">
                             <h:outputText value="#{p.id}"/>
                         </p:column>
@@ -35,10 +36,23 @@
                         <p:column headerText="Status">
                             <h:outputText value="#{p.status}"/>
                         </p:column>
+                        <p:column headerText="Ver" rendered="#{cc.attrs.renderView}">
+                            <p:commandButton icon="fa fa-eye" immediate="true" onclick="PF('#{cc.attrs.id}_consulta_projeto_dialog_view').show();" update="@(.view)">
+                                <f:setPropertyActionListener value="#{p}" target="#{projetoMB.projeto}"/>
+                            </p:commandButton>
+                        </p:column>
                         <c:insertChildren />
                     </p:dataTable>
                 </p:fieldset>
             </cc:padrao>
         </h:form>
+        <cc:dialog widgetVar="#{cc.attrs.id}_consulta_projeto_dialog_view">
+            <v:projeto p="#{projetoMB.projeto}"/>
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton icon="fa fa-check-circle" immediate="true" onclick="PF('#{cc.attrs.id}_consulta_projeto_dialog_view').hide();" value="OK"/>
+                </h:form>
+            </f:facet>
+        </cc:dialog>
     </c:implementation>
 </ui:composition>

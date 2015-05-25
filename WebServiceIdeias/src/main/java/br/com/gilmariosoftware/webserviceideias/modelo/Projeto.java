@@ -37,7 +37,7 @@ public class Projeto implements Serializable {
     private String hashprojeto;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private StatusProjeto status;
+    private final StatusProjeto status;
 
     public Projeto() {
         this.status = StatusProjeto.Parado;
@@ -48,7 +48,7 @@ public class Projeto implements Serializable {
     }
 
     public void gerahash() throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        this.hashprojeto = StringHashUtil.criaHash(nome.concat(status.toString()).concat(Integer.toString(this.hashCode())));
+        this.hashprojeto = StringHashUtil.geraHash(nome.concat(status.toString()).concat(Integer.toString(this.hashCode())));
     }
 
     public void setId(Long id) {
@@ -69,7 +69,6 @@ public class Projeto implements Serializable {
 
     public String getHashprojeto() {
         return hashprojeto;
-
     }
 
     public enum StatusProjeto {

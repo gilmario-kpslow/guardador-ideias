@@ -12,13 +12,13 @@
 
     </c:interface>
     <c:implementation>
-        <div class="container">
-            <p:dialog header="#{cc.attrs.header}" widgetVar="#{cc.attrs.widgetVar}">
+        <p:dialog header="#{cc.attrs.header}" widgetVar="#{cc.attrs.widgetVar}">
+            <div class="container">
                 <c:insertChildren/>
-                <f:facet name="footer">
-                    <c:insertFacet name="footer"/>
-                </f:facet>
-            </p:dialog>
-        </div>
+            </div>
+            <f:facet name="footer">
+                <c:insertFacet name="footer"/>
+            </f:facet>
+        </p:dialog>
     </c:implementation>
 </ui:composition>

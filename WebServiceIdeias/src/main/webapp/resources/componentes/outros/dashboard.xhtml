@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
+                xmlns:v="http://xmlns.jcp.org/jsf/composite/componentes/view"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <c:interface>
+
+    </c:interface>
+    <c:implementation>
+        <p:carousel value="#{dashboardMB.projetos}"  var="projeto" numVisible="5">
+
+            <p:panel header="#{projeto.nome}">
+                <h:outputText value="#{projeto.nome}"/>
+            </p:panel>
+        </p:carousel>
+        <h:form>
+            <cc:padrao header="Dashboard">
+
+            </cc:padrao>
+        </h:form>
+    </c:implementation>
+</ui:composition>

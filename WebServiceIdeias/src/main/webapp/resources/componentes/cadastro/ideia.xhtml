@@ -16,10 +16,11 @@
             <ca:padrao header="Cadastro de Idéias">
                 <p:fieldset>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 col-md-12">
                             <p:toolbar>
                                 <f:facet name="left">
                                     <p:commandButton value="Salvar" actionListener="#{ideiaMB.salvar()}" icon="ui-icon-disk" class="btn btn-default" update="@form"/>
+                                    <p:commandButton value="Consultar" immediate="true" icon="fa fa-search" class="btn btn-default" onclick="PF('_cadastro_ideia_dialog_consulta_ideia').show()"/>
                                 </f:facet>
                             </p:toolbar>
                         </div>
@@ -27,22 +28,26 @@
                 </p:fieldset>
                 <p:fieldset>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-4">
                             <div>
                                 <p:outputLabel value="Projeto" for="projeto"/>
                             </div>
                             <div class="input-group ">
                                 <p:inputText value="#{ideiaMB.ideia.projeto.nome}" readonly="true" disabled="true" id="projeto" placeholder="Selecione um projeto" class="form-control projeto_sel"/>
-                                <span class="input-group-addon cursor" onclick="PF('dialog_consulta').show();"> <i class="fa fa-search"> </i></span>
+                                <span class="input-group-addon cursor" onclick="PF('_cadastro_ideia_dialog_consulta_projeto').show();"> <i class="fa fa-search"> </i></span>
+                                <p:remoteCommand name="removeProjeto" update="@(.view)">
+                                    <f:setPropertyActionListener value="#{null}" target="#{ideiaMB.ideia.projeto}"/>
+                                </p:remoteCommand>
+                                <span class="input-group-addon cursor" onclick="removeProjeto();"> <i class="fa fa-times"> </i></span>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <div>
                                 <p:outputLabel value="Título" for="titulo"/>
                             </div>
                             <p:inputText value="#{ideiaMB.ideia.titulo}" id="titulo" placeholder="Titulo da Idéia" class="form-control"/>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-2">
                             <div>
                                 <p:outputLabel value="Situação"/>
                             </div>
@@ -50,7 +55,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 col-md-12">
                             <div>
                                 <p:outputLabel value="Descrição" for="descricao"/>
                             </div>
@@ -60,14 +65,23 @@
                 </p:fieldset>
             </ca:padrao>
         </h:form>
-        <ca:dialog widgetVar="dialog_consulta">
+        <ca:dialog widgetVar="_cadastro_ideia_dialog_consulta_projeto">
             <co:projeto>
                 <p:column headerText="ação">
-                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('dialog_consulta').hide();">
+                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('_cadastro_ideia_dialog_consulta_projeto').hide();">
                         <f:setPropertyActionListener value="#{p}" target="#{ideiaMB.ideia.projeto}"/>
                     </p:commandButton>
                 </p:column>
             </co:projeto>
+        </ca:dialog>
+        <ca:dialog widgetVar="_cadastro_ideia_dialog_consulta_ideia">
+            <co:ideia>
+                <p:column headerText="ação">
+                    <p:commandButton update="@(.view)" icon="fa fa-check-circle" immediate="true" onclick="PF('_cadastro_ideia_dialog_consulta_ideia').hide();">
+                        <f:setPropertyActionListener value="#{i}" target="#{ideiaMB.ideia}"/>
+                    </p:commandButton>
+                </p:column>
+            </co:ideia>
         </ca:dialog>
     </c:implementation>
 </ui:composition>

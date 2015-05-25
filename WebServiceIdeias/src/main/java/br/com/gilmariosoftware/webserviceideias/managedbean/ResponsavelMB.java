@@ -1,7 +1,7 @@
 package br.com.gilmariosoftware.webserviceideias.managedbean;
 
-import br.com.gilmariosoftware.webserviceideias.modelo.Ideia;
-import br.com.gilmariosoftware.webserviceideias.negocio.IdeiaNegocio;
+import br.com.gilmariosoftware.webserviceideias.modelo.Responsavel;
+import br.com.gilmariosoftware.webserviceideias.negocio.ResponsavelNegocio;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -16,20 +16,20 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class IdeiaMB implements Serializable {
+public class ResponsavelMB implements Serializable {
 
     @EJB
-    private IdeiaNegocio negocio;
-    private Ideia ideia;
+    private ResponsavelNegocio negocio;
+    private Responsavel responsavel;
 
     @PostConstruct
     private void init() {
-        ideia = new Ideia();
+        responsavel = new Responsavel();
     }
 
     public void salvar() {
         try {
-            negocio.salvar(ideia);
+            negocio.salvar(responsavel);
             init();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Registro salvo com sucesso!!!"));
         } catch (Exception e) {
@@ -38,12 +38,12 @@ public class IdeiaMB implements Serializable {
         }
     }
 
-    public Ideia getIdeia() {
-        return ideia;
+    public Responsavel getResponsavel() {
+        return responsavel;
     }
 
-    public void setIdeia(Ideia ideia) {
-        this.ideia = ideia;
+    public void setResponsavel(Responsavel responsavel) {
+        this.responsavel = responsavel;
     }
 
 }

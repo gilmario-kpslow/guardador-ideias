@@ -49,7 +49,7 @@ public class Ideia implements Serializable {
     @NotBlank
     private String hashideia;
     @Enumerated(EnumType.STRING)
-    private StatusIdeia status;
+    private final StatusIdeia status;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private Projeto projeto;
@@ -103,7 +103,7 @@ public class Ideia implements Serializable {
     }
 
     public void gerahash() throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        this.hashideia = StringHashUtil.criaHash(titulo.concat(status.toString()).concat(Integer.toString(this.hashCode())));
+        this.hashideia = StringHashUtil.geraHash(titulo.concat(status.toString()).concat(Integer.toString(this.hashCode())));
     }
 
     public String getHashideia() {

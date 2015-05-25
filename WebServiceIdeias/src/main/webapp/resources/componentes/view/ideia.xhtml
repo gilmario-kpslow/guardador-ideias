@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsf/composite"
+                xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <c:interface>
+        <c:attribute name="ideia" required="true" type="br.com.gilmariosoftware.webserviceideias.modelo.Ideia"/>
+    </c:interface>
+    <c:implementation>
+        <cc:padrao header="Detalhes da Idéia">
+            <div>
+                <h:outputText value="Id: #{cc.attrs.ideia.id}" class="titulo"/>
+            </div>
+            <h:outputText value="Título: #{cc.attrs.ideia.titulo}" class="titulo"/>
+            <div>
+                <h:outputText value="Projeto: #{cc.attrs.ideia.projeto.nome}" class="titulo"/>
+            </div>
+            <div>
+                <h:outputText value="Data de Cadastro: #{cc.attrs.ideia.dataCadastro.time}" class="titulo">
+                    <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" type="date"/>
+                </h:outputText>
+            </div>
+            <div>
+                <h:outputText value="status: #{cc.attrs.ideia.status}" class="titulo"/>
+            </div>
+            <div>
+                <h:outputText value="Descrição: #{cc.attrs.ideia.descricao}" class="titulo"/>
+            </div>
+        </cc:padrao>
+    </c:implementation>
+</ui:composition>

@@ -5,33 +5,34 @@
                 xmlns:c="http://xmlns.jcp.org/jsf/composite"
                 xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
                 xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
+                xmlns:v="http://xmlns.jcp.org/jsf/composite/componentes/view"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <c:interface>
-
+        <c:attribute name="renderView" default="true"/>
     </c:interface>
     <c:implementation>
         <h:form>
             <cc:padrao header="Consulta de Idéias">
                 <p:fieldset>
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-5">
                             <div class="input-group ">
                                 <p:inputText value="#{ideiaConsultaMB.projeto.nome}" readonly="true" styleClass="form-control projeto_sel" maxlength="50" placeholder="Nome do projeto"/>
-                                <span class="input-group-addon cursor" onclick="PF('dialog_consulta').show();"> <i class="fa fa-search"> </i></span>
+                                <span class="input-group-addon cursor" onclick="PF('_consulta_ideia_dialog_consulta_projeto').show();"> <i class="fa fa-search"> </i></span>
                             </div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-5">
                             <p:inputText value="#{ideiaConsultaMB.nome}" styleClass="form-control" maxlength="50" placeholder="Titulo da idéia"/>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-2">
                             <p:commandButton class="btn btn-default"  value="Consultar" icon="ui-icon-search" actionListener="#{ideiaConsultaMB.consultar()}" update="@form"/>
                         </div>
                     </div>
                 </p:fieldset>
                 <p:fieldset>
-                    <p:dataTable value="#{ideiaConsultaMB.listaDeIdeias}" var="i" paginatorAlwaysVisible="false" paginator="true" rows="10">
+                    <p:dataTable value="#{ideiaConsultaMB.listaDeIdeias}" var="i" paginatorAlwaysVisible="false" paginator="true" rows="10" reflow="true" >
                         <p:column headerText="Projeto">
                             <h:outputText value="#{i.projeto.nome}"/>
                         </p:column>
@@ -40,25 +41,38 @@
                         </p:column>
                         <p:column headerText="Data cadastro">
                             <h:outputText value="#{i.dataCadastro.time}">
-                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Status">
                             <h:outputText value="#{i.status}"/>
+                        </p:column>
+                        <p:column headerText="ver" rendered="#{cc.attrs.renderView}">
+                            <p:commandButton icon="fa fa-eye" immediate="true"  onclick="PF('#{cc.attrs.id}_consulta_ideia_dialog_view').show();" update="@(.view)">
+                                <f:setPropertyActionListener value="#{i}" target="#{ideiaMB.ideia}"/>
+                            </p:commandButton>
                         </p:column>
                         <c:insertChildren />
                     </p:dataTable>
                 </p:fieldset>
             </cc:padrao>
         </h:form>
-        <cc:dialog widgetVar="dialog_consulta">
+        <cc:dialog widgetVar="_consulta_ideia_dialog_consulta_projeto">
             <co:projeto>
                 <p:column headerText="ação">
-                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('dialog_consulta').hide();">
+                    <p:commandButton update="@(.projeto_sel)" icon="fa fa-check-circle" immediate="true" onclick="PF('_consulta_ideia_dialog_consulta_projeto').hide();">
                         <f:setPropertyActionListener value="#{p}" target="#{ideiaConsultaMB.projeto}"/>
                     </p:commandButton>
                 </p:column>
             </co:projeto>
+        </cc:dialog>
+        <cc:dialog widgetVar="#{cc.attrs.id}_consulta_ideia_dialog_view" >
+            <v:ideia ideia="#{ideiaMB.ideia}"/>
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton icon="fa fa-check-circle" immediate="true" onclick="PF('#{cc.attrs.id}_consulta_ideia_dialog_view').hide();" value="OK"/>
+                </h:form>
+            </f:facet>
         </cc:dialog>
     </c:implementation>
 </ui:composition>
