@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+>
+
+    <TextView
+        android:text="@string/cadastro_assunto_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+    <TextView
+        android:text="@string/descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/cadastro_assunto_descricao"
+    />
+
+    <EditText
+        android:hint="@string/descricao_hint"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cadastro_assunto_descricao"
+        android:maxLength="20"
+    />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_salvar"
+        android:text="@string/salvar"
+    />
+
+
+
+</LinearLayout>
+
