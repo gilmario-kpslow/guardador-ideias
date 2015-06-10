@@ -5,7 +5,7 @@
               android:layout_height="fill_parent"
 >
     <TextView
-        android:text="@string/lista_assunto_titulo"
+        android:text="@string/lista_tarefa_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
     />
@@ -15,30 +15,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
     >
-        <EditText
-            android:hint="@string/descricao_consulta_hint"
-            android:inputType="text"
+        <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:id="@+id/consulta_assunto_descricao"
+            android:id="@+id/consulta_tarefa_assunto"
         />
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_consulta_assunto"
+            android:id="@+id/btn_consulta_tarefa"
             android:drawableLeft="@drawable/ic_action_search"
         />
     </LinearLayout>
     <ListView
-        android:id="@+id/lista_assunto_lista"
+        android:id="@+id/lista_tarefa_lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    >
-
-    </ListView>
-
-
+    />
 </LinearLayout>
 

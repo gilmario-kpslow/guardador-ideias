@@ -1,6 +1,5 @@
 package br.com.sincronizador.fragmento;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +15,18 @@ import br.com.sincronizador.modelos.Assunto;
  *
  * @author gilmario
  */
-public class CadastraAssuntoFragment extends Fragment implements View.OnClickListener {
+public class CadastraAssuntoFragment extends SincronizadorFragmento implements View.OnClickListener {
 
     private EditText descricao;
+    private Assunto assunto;
+
+    public CadastraAssuntoFragment() {
+
+    }
+
+    public CadastraAssuntoFragment(Assunto assunto) {
+        this.assunto = assunto;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,18 +34,22 @@ public class CadastraAssuntoFragment extends Fragment implements View.OnClickLis
         descricao = (EditText) rootView.findViewById(R.id.cadastro_assunto_descricao);
         Button button = (Button) rootView.findViewById(R.id.btn_salvar);
         button.setOnClickListener(this);
+        if (assunto != null) {
+            descricao.setText(assunto.getDescricao());
+        }
         return rootView;
     }
 
     public void onClick(View v) {
         try {
             AssuntoNegocio negocio = new AssuntoNegocio(getActivity());
-            Assunto assunto = new Assunto();
-            assunto.setDescricao(descricao.getText().toString());
-            if (negocio.salvar(assunto)) {
-                Toast.makeText(getActivity(), "Assunto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-                clearView();
+            if (assunto == null) {
+                assunto = new Assunto();
             }
+            assunto.setDescricao(descricao.getText().toString());
+            negocio.salvar(assunto);
+            Toast.makeText(getActivity(), "Assunto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+            clearView();
         } catch (Exception e) {
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -45,6 +57,11 @@ public class CadastraAssuntoFragment extends Fragment implements View.OnClickLis
 
     private void clearView() {
         descricao.setText("");
+    }
+
+    @Override
+    public String getNome() {
+        return "Cadastro de Assuntos";
     }
 
 }

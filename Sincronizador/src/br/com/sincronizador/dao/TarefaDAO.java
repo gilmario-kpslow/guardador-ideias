@@ -40,7 +40,6 @@ public class TarefaDAO extends DAO<Tarefa> {
         tarefa.setDataCadastro(util.converte(cursor.getLong(i++)));
         tarefa.setDataPrevisao(util.converte(cursor.getLong(i++)));
         tarefa.setDataInicio(util.converte(cursor.getLong(i++)));
-        tarefa.setDataInicio(util.converte(cursor.getLong(i++)));
         tarefa.setDataConclusao(util.converte(cursor.getLong(i++)));
         tarefa.setStatus(Tarefa.StatusTarefa.valueOf(cursor.getString(i++)));
         tarefa.setAssunto(assuntoDAO.carregar(cursor.getLong(i++)));
@@ -60,7 +59,8 @@ public class TarefaDAO extends DAO<Tarefa> {
         values.put(getColunas()[5], util.parseData(entidade.getDataInicio()));
         values.put(getColunas()[6], util.parseData(entidade.getDataConclusao()));
         values.put(getColunas()[7], entidade.getStatus().toString());
-        values.put(getColunas()[8], entidade.getStringhash());
+        values.put(getColunas()[8], entidade.getAssunto().getId());
+        values.put(getColunas()[9], entidade.getStringhash());
         return values;
     }
 

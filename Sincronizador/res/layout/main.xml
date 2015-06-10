@@ -12,7 +12,7 @@
     />
 
     <ListView
-        android:background="#111"
+        android:background="#ddd"
         android:id="@+id/lista_opcoes"
         android:layout_width="240dp"
         android:choiceMode="singleChoice"

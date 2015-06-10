@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+>
+
+    <TextView
+        android:text="@string/cadastro_tarefa_titulo_fragmento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+    <TextView
+        android:text="@string/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/cadastro_tarefa_titulo"
+    />
+
+    <EditText
+        android:hint="@string/titulo_hint"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cadastro_tarefa_titulo"
+        android:maxLength="20"
+    />
+    <TextView
+        android:text="@string/descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/cadastro_tarefa_descricao"
+    />
+
+    <EditText
+        android:hint="@string/descricao_hint"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cadastro_tarefa_descricao"
+    />
+    <TextView
+        android:text="@string/assunto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/cadastro_tarefa_assunto"
+    />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cadastro_tarefa_assunto"
+    />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_salvar_tarefa"
+        android:text="@string/salvar"
+    />
+
+
+
+</LinearLayout>
+

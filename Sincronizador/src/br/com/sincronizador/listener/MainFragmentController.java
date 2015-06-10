@@ -1,11 +1,11 @@
 package br.com.sincronizador.listener;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.view.View;
 import android.widget.AdapterView;
 import br.com.sincronizador.R;
-import br.com.sincronizador.fragmento.CadastraAssuntoFragment;
 
 /**
  *
@@ -22,15 +22,14 @@ public class MainFragmentController implements AdapterView.OnItemClickListener {
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Fragment frag = (Fragment) parent.getItemAtPosition(position);
+        inicializaFragmento(frag);
+    }
+
+    public void inicializaFragmento(Fragment fragment) {
         FragmentTransaction transaction = manager.beginTransaction();
-        if (position == 0) {
-            transaction.replace(R.id.conteudo, new CadastraAssuntoFragment());
-            transaction.addToBackStack(null);
-        }
-        if (position == 1) {
-            //transaction.replace(R.id.conteudo, new ListaAssunto());
-            transaction.addToBackStack(null);
-        }
+        transaction.replace(R.id.conteudo, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
         finalListener.finish();
     }

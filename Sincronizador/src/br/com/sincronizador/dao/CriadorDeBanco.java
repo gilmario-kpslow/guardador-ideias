@@ -28,7 +28,7 @@ public class CriadorDeBanco extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE assunto (_id INTEGER PRIMARY KEY, descricao TEXT unique not null, stringhash TEXT)");
-        db.execSQL("CREATE TABLE tarefa (_id INTEGER PRIMARY KEY, titulo TEXT NOT NULL, descricao TEXT, data_cadastro DATE NOT NULL, data_previsao DATE NOT NULL, data_inicio DATE, data_conclusao DATE, status TEXT NOT NULL CHECK(status in ('Pendente', 'Agendada', 'Iniciada', 'Concluida', 'Cancelada')), assunto INTEGER NOT NULL references assunto(_id) ON DELETE RESTRICT, stringhash TEXT)");
+        db.execSQL("CREATE TABLE tarefa (_id INTEGER PRIMARY KEY, titulo TEXT NOT NULL, descricao TEXT, data_cadastro DATE NOT NULL, data_previsao DATE, data_inicio DATE, data_conclusao DATE, status TEXT NOT NULL CHECK(status in ('Pendente', 'Agendada', 'Iniciada', 'Concluida', 'Cancelada')), assunto INTEGER NOT NULL references assunto(_id) ON DELETE RESTRICT, stringhash TEXT)");
     }
 
     @Override

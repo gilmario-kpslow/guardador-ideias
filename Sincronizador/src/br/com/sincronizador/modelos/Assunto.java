@@ -7,16 +7,18 @@ import java.util.Objects;
  *
  * @author gilmario
  */
-public class Assunto implements Serializable {
+public class Assunto implements Serializable, IdModel {
 
     private Long id;
     private String descricao;
     private String stringhash;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,6 +56,11 @@ public class Assunto implements Serializable {
         }
         final Assunto other = (Assunto) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return getDescricao();
     }
 
 }

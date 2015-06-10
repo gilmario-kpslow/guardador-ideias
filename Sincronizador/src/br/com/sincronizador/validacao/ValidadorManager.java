@@ -7,8 +7,9 @@ import java.util.List;
 /**
  *
  * @author gilmario
+ *
  */
-public class ValidadorManager {
+public abstract class ValidadorManager {
 
     private final List<Validador> validadores;
 
@@ -16,15 +17,10 @@ public class ValidadorManager {
         validadores = Arrays.asList(validador);
     }
 
-    public boolean validar() throws ValidationExection {
-        boolean valido = false;
+    public void validar() throws ValidationExection {
         for (Validador v : validadores) {
-            valido = v.valida();
-            if (!valido) {
-                break;
-            }
+            v.valida();
         }
-        return valido;
     }
 
 }

@@ -3,7 +3,7 @@
     <item android:id="@+id/consulta_canal_menu"
           android:title="@string/ver_canais"
           android:showAsAction="ifRoom"
-          android:icon="@drawable/ic_launcher"
+          android:icon="@drawable/ic_action_settings"
     />
 
 </menu>

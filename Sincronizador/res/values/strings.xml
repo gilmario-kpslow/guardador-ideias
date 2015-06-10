@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PrincipalActivity</string>
+    <string name="assunto">Assunto</string>
     <string name="cadastro_assunto_titulo">Cadastrar Assunto</string>
-    <string name="descricao">Descrição</string>
-    <string name="descricao_hint">Informe a descrição do assunto</string>
-    <string name="descricao_consulta_hint">Informe a descrição</string>
+    <string name="cadastro_tarefa_titulo_fragmento">Cadastrar Tarefa</string>
     <string name="consultar">Consultar</string>
+    <string name="descricao">Descrição</string>
+    <string name="descricao_hint">Informe a descrição</string>
+    <string name="descricao_consulta_hint">Informe a descrição</string>
+    <string name="lista_assunto_titulo">Consultar Assunto</string>
+    <string name="lista_tarefa_titulo">Consultar Tarefas</string>
     <string name="salvar">Salvar</string>
+    <string name="titulo">Título</string>
+    <string name="titulo_hint">Informe um titulo</string>
     <string name="ver_canais">Testando</string>
 </resources>

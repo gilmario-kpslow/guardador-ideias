@@ -20,11 +20,11 @@ public class DrawableLayoutListenerImplement implements DrawerLayout.DrawerListe
     }
 
     public void onDrawerOpened(View view) {
-        actionBar.hide();
+        //actionBar.hide();
     }
 
     public void onDrawerClosed(View view) {
-        actionBar.show();
+        //actionBar.show();
     }
 
     public void onDrawerStateChanged(int i) {

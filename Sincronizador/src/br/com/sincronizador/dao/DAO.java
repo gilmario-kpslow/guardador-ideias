@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import br.com.sincronizador.modelos.IdModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author gilmario
  * @param <T>
  */
-public abstract class DAO<T> {
+public abstract class DAO<T extends IdModel> {
 
     private final CriadorDeBanco resolver;
     private final SQLiteDatabase db;
@@ -54,9 +55,15 @@ public abstract class DAO<T> {
         return lista;
     }
 
-    public Long salva(T entidade) {
-        long resultado = getDb().insertOrThrow(getTabela(), null, createContentValues(entidade));
-        return resultado;
+    public void salva(T entidade) {
+        getDb().insertOrThrow(getTabela(), null, createContentValues(entidade));
+    }
+
+    public void update(T entidade) throws Exception {
+        int resultado = getDb().update(getTabela(), createContentValues(entidade), " _ID = ?", new String[]{entidade.getId().toString()});
+        if (resultado <= 0) {
+            throw new Exception("Erro ao reslizar Update nenhuma linha afateda");
+        }
     }
 
     public T carregar(Long id) {

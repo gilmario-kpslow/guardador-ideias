@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author gilmario
  */
-public class Tarefa implements Serializable {
+public class Tarefa implements Serializable, IdModel {
 
     private Long id;
     private String titulo;
@@ -20,10 +20,17 @@ public class Tarefa implements Serializable {
     private Assunto assunto;
     private String stringhash;
 
+    public Tarefa() {
+        dataCadastro = new Date();
+        status = StatusTarefa.Pendente;
+    }
+
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }

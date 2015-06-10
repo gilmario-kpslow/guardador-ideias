@@ -4,12 +4,11 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
 >
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Teste"
-    >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/descricao_assunto_row"
+    />
 
-    </TextView>
 </LinearLayout>
+
