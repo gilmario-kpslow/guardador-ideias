@@ -35,7 +35,7 @@
                             <div class="input-group ">
                                 <p:inputText value="#{ideiaMB.ideia.projeto.nome}" readonly="true" disabled="true" id="projeto" placeholder="Selecione um projeto" class="form-control projeto_sel"/>
                                 <span class="input-group-addon cursor" onclick="PF('_cadastro_ideia_dialog_consulta_projeto').show();"> <i class="fa fa-search"> </i></span>
-                                <p:remoteCommand name="removeProjeto" update="@(.view)">
+                                <p:remoteCommand name="removeProjeto" update="@(.view)" immediate="true">
                                     <f:setPropertyActionListener value="#{null}" target="#{ideiaMB.ideia.projeto}"/>
                                 </p:remoteCommand>
                                 <span class="input-group-addon cursor" onclick="removeProjeto();"> <i class="fa fa-times"> </i></span>

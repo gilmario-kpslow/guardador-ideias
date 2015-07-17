@@ -21,7 +21,7 @@ public class DashboardMB implements Serializable {
     private List projetos;
 
     @PostConstruct
-    protected void init() {
+    public void init() {
         projetos = repositorio.encontrarTodas();
     }
 

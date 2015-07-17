@@ -27,7 +27,7 @@ public class Assunto implements Serializable {
     private Long id;
     @Length(max = 30, min = 3)
     @NotBlank
-    @Column(length = 30, nullable = false)
+    @Column(length = 30, nullable = false, unique = true)
     private String descricao;
     @NotBlank
     @Column(nullable = false, length = 256)

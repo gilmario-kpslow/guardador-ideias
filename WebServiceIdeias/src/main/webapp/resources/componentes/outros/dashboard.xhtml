@@ -4,24 +4,29 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsf/composite"
                 xmlns:cc="http://xmlns.jcp.org/jsf/composite/componentes/cadastro"
-                xmlns:co="http://xmlns.jcp.org/jsf/composite/componentes/consulta"
-                xmlns:v="http://xmlns.jcp.org/jsf/composite/componentes/view"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <c:interface>
 
     </c:interface>
     <c:implementation>
-        <p:carousel value="#{dashboardMB.projetos}"  var="projeto" numVisible="5">
-
-            <p:panel header="#{projeto.nome}">
-                <h:outputText value="#{projeto.nome}"/>
-            </p:panel>
-        </p:carousel>
         <h:form>
             <cc:padrao header="Dashboard">
-
+                <p:dataGrid value="#{dashboardMB.projetos}" var="projeto">
+                    <p:panel header="#{projeto.nome}">
+                        <h:panelGrid>
+                            <h:outputText value="ID: #{projeto.id}"/>
+                            <h:outputText value="Nome: #{projeto.nome}"/>
+                            <h:outputText value="Status: #{projeto.status}"/>
+                        </h:panelGrid>
+                        <f:facet name="footer">
+                            <h:panelGrid columns="2">
+                                <p:commandButton action="#{gerenciarProjetoMB.selecionaProjeto(projeto)}" icon="fa fa-check" value="Visualizar"/>
+                            </h:panelGrid>
+                        </f:facet>
+                    </p:panel>
+                </p:dataGrid>
             </cc:padrao>
         </h:form>
     </c:implementation>

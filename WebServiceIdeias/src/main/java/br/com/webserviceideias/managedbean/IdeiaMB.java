@@ -23,7 +23,7 @@ public class IdeiaMB implements Serializable {
     private Ideia ideia;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         ideia = new Ideia();
     }
 

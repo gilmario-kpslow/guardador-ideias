@@ -23,7 +23,7 @@ public class ResponsavelMB implements Serializable {
     private Responsavel responsavel;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         responsavel = new Responsavel();
     }
 

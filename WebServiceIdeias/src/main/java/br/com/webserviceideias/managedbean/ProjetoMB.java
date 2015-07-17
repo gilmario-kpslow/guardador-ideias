@@ -23,7 +23,7 @@ public class ProjetoMB implements Serializable {
     private Projeto projeto;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         projeto = new Projeto();
     }
 

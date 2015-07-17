@@ -8,6 +8,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,10 +49,14 @@ public class Tarefa implements Serializable {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataPrevisao;
-    @NotNull
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataInicio;
+    @Column(nullable = true)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataConclusao;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private StatusTarefa status;
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
@@ -136,6 +142,14 @@ public class Tarefa implements Serializable {
 
     public void setAssunto(Assunto assunto) {
         this.assunto = assunto;
+    }
+
+    public Date getDataConclusao() {
+        return dataConclusao;
+    }
+
+    public void setDataConclusao(Date dataConclusao) {
+        this.dataConclusao = dataConclusao;
     }
 
     public String getStringhash() {
