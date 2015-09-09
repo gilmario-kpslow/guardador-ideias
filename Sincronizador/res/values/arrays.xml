@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="opcoes_tarefa">
+        <item>Editar</item>
+        <item>Agendar</item>
+        <item>Parar</item>
+        <item>Cancelar</item>
+        <item>Concluir</item>
+    </array>
+</resources>

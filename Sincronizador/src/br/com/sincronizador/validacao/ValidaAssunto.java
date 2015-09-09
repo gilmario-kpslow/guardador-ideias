@@ -9,7 +9,7 @@ import br.com.sincronizador.modelos.Assunto;
 public class ValidaAssunto extends ValidadorManager {
 
     public ValidaAssunto(Assunto assunto) {
-        super(new ValidaString(assunto.getDescricao(), 3, 20, false));
+        super(new ValidaString(assunto.getDescricao(), 3, 20, true));
     }
 
 }

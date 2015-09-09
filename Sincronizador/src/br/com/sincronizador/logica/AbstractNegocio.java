@@ -42,5 +42,4 @@ public abstract class AbstractNegocio<T extends IdModel> {
     }
 
     protected abstract ValidadorManager getValidatorManager(T t);
-
 }

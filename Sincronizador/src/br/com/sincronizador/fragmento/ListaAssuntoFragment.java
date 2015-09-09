@@ -63,14 +63,14 @@ public class ListaAssuntoFragment extends SincronizadorFragmento implements View
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Assunto assunto = assuntoAdapter.getItem(position);
-        DialogBuilder.mensagemDialogConfirmacao(getActivity(), "Excluir assunto?", new DialogInterface.OnClickListener() {
+        DialogBuilder.mensagemDialogConfirmacao(getActivity(), "Editar assunto?", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 if (which == Dialog.BUTTON_POSITIVE) {
                     mainFragmentController.inicializaFragmento(new CadastraAssuntoFragment(assunto));
                 }
             }
-        });
+        }, (DialogInterface.OnClickListener) null);
     }
 
     @Override

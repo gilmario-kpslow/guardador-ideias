@@ -1,7 +1,5 @@
 package br.com.sincronizador.fragmento;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import br.com.sincronizador.R;
 import br.com.sincronizador.listener.MainFragmentController;
+import br.com.sincronizador.listener.TarefaProcessaListener;
 import br.com.sincronizador.logica.AssuntoNegocio;
 import br.com.sincronizador.logica.TarefaNegocio;
 import br.com.sincronizador.modelos.Assunto;
@@ -69,14 +68,7 @@ public class ListaTarefaFragment extends SincronizadorFragmento implements View.
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Tarefa tarefa = tarefaAdapter.getItem(position);
-        DialogBuilder.mensagemDialogConfirmacao(getActivity(), "Editar tarefa?", new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == Dialog.BUTTON_POSITIVE) {
-                    mainFragmentController.inicializaFragmento(new CadastraTarefaFragment(tarefa));
-                }
-            }
-        });
+        DialogBuilder.mensagemDialogConfirmacao(getActivity(), new TarefaProcessaListener(tarefa), getActivity().getResources().getStringArray(R.array.opcoes_tarefa));
     }
 
     @Override

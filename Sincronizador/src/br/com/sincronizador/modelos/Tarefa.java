@@ -107,9 +107,29 @@ public class Tarefa implements Serializable, IdModel {
         this.stringhash = stringhash;
     }
 
+    public void agendar() {
+
+    }
+
+    public void iniciar() {
+
+    }
+
+    public void cancelar() {
+
+    }
+
+    public void concluir() {
+
+    }
+
+    public void parar() {
+
+    }
+
     public enum StatusTarefa {
 
-        Pendente, Agendada, Iniciada, Concluida, Cancelada
+        Pendente, Agendada, Iniciada, Parada, Cancelada, Concluida;
 
     }
 

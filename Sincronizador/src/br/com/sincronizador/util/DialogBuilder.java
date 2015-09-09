@@ -6,12 +6,20 @@ import android.content.DialogInterface;
 
 public class DialogBuilder {
 
-    public static void mensagemDialogConfirmacao(Context context, String mensagem, DialogInterface.OnClickListener listener) {
+    public static void mensagemDialogConfirmacao(Context context, String mensagem, DialogInterface.OnClickListener listener, DialogInterface.OnClickListener listenerNegative) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(mensagem);
         builder.setTitle("Confirmação");
         builder.setPositiveButton("Sim", listener);
-        builder.setNegativeButton("Não", null);
+        builder.setNegativeButton("Não", listenerNegative);
         builder.create().show();
     }
+
+    public static void mensagemDialogConfirmacao(Context context, DialogInterface.OnClickListener listener, String[] opcoes) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Opções");
+        builder.setItems(opcoes, listener);
+        builder.create().show();
+    }
+
 }
